@@ -14,7 +14,7 @@
 | birth_date         | date       | null: false                    |
 
 ### Association
- (brand)
+
 - has_many :items
 - has_many :orders
 
