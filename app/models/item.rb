@@ -8,7 +8,6 @@ class Item < ApplicationRecord
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" } 
   validates :price, presence: true,
     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "must be a half-width number between 300 and 9999999" }
-  validates :user, presence: true
   validates :image, presence: true
 
   belongs_to :user
