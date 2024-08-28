@@ -33,31 +33,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが空では登録できない' do
-        @item.category_id = nil
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'condition_idが空では登録できない' do
-        @item.condition_id = nil
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
       it 'postage_idが空では登録できない' do
-        @item.postage_id = nil
+        @item.postage_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
 
       it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = nil
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'shipping_day_idが空では登録できない' do
-        @item.shipping_day_id = nil
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
