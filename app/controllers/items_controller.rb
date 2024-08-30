@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_sign_in, only: :new
-  before_action :set_item, only: [:edit, :show, :update, :move_to_index]
+  before_action :set_item, only: [:edit, :show, :update]
   before_action :move_to_index, only: :edit
 
   def index
