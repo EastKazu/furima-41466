@@ -86,7 +86,11 @@ RSpec.describe OrderPurchaseAddress, type: :model do
           expect(@order_purchase_address.errors.full_messages).to include("Item can't be blank")
         end
 
-
+        it 'tokenが空では購入できない' do
+          @order_purchase_address.token = nil
+          @order_purchase_address.valid?
+          expect(@order_purchase_address.errors.full_messages).to include("Token can't be blank")
+        end
       end
     end
   end
