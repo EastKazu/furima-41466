@@ -1,11 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :move_to_top, only: :index
+
   def index
     @item = Item.find(params[:item_id])
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @order_purchase_address = OrderPurchaseAddress.new
-  end
-
-  def new
     @order_purchase_address = OrderPurchaseAddress.new
   end
 
@@ -36,4 +34,12 @@ class OrdersController < ApplicationController
         currency: 'jpy'
       )
   end
+
+  def move_to_top
+    @item = Item.find(params[:item_id])
+    return if user_signed_in? && @item.user != current_user && !@item.order.present?
+
+    redirect_to root_path
+  end
+
 end
