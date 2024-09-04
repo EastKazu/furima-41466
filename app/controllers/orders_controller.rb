@@ -1,15 +1,14 @@
 class OrdersController < ApplicationController
   before_action :move_to_sign_in, only: :index
   before_action :move_to_top, only: :index
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_purchase_address = OrderPurchaseAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_purchase_address = OrderPurchaseAddress.new(order_params)
     if @order_purchase_address.valid?
       pay_item
@@ -45,9 +44,12 @@ class OrdersController < ApplicationController
   end
 
   def move_to_top
-    @item = Item.find(params[:item_id])
     return if user_signed_in? && @item.user != current_user && !@item.order.present?
 
     redirect_to root_path
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
