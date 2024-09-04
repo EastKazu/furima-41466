@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :move_to_sign_in, only: :index
-  before_action :move_to_top, only: :index
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_top, only: :index
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
