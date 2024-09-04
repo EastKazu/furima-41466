@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :move_to_sign_in, only: :index
   before_action :move_to_top, only: :index
 
   def index
@@ -35,6 +36,12 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_sign_in
+    return if user_signed_in?
+
+    redirect_to new_user_session_path
   end
 
   def move_to_top
